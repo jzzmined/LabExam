@@ -2,8 +2,8 @@ class Item:
 
     def __init__(self, name, quantity=0, price=0.0):
         self.name = name
-        self.quantity = 0
-        self.price = 0.0
+        self.__quantity = 0
+        self.__price = 0.0
 
         self._set_price(price)
         if quantity > 0:
@@ -12,13 +12,13 @@ class Item:
 
     # Private
     def _get_quantity(self):
-        return self._get_quantity
+        return self.__quantity
 
     def _set_quantity(self, value):
         self.__quantity =  value
 
     def _get_price(self):
-        return self._price
+        return self.__price
 
     def _set_price(self, value):
         try:
@@ -66,10 +66,10 @@ class Item:
         return self.__quantity * self.__price
 
     def display(self):
-        print(f" {self.name:<20} qty: {self.__quantity:<6} "
-              f"price: ${self.__price:,.2f}  "
-              f"total value: ${self.total_value():,.2f}")
+        print(f" {self.name:<20} Qty: {self.__quantity:<6} "
+              f"Price: ₱{self.__price:,.2f}  "
+              f"Total Value: ₱{self.total_value():,.2f}")
 
     def __str__(self):
         return (f"{self.__class__.__name__}({self.name}, "
-                f"qty={self.__quantity}, price=${self.__price:,.2f})")
+                f"Qty={self.__quantity}, price=₱{self.__price:,.2f})")

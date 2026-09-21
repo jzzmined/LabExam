@@ -4,7 +4,7 @@ EXPIRY_THRESHOLD_DAYS = 3
 DISCOUNT_RATE = 0.10 
 
 
-class Perishable_item(Item):
+class PerishableItem(Item):
 
     def __init__(self, name, quantity=0, price=0.0, expiry_date=None):
         super().__init__(name, quantity, price)
@@ -24,7 +24,7 @@ class Perishable_item(Item):
 
     def display(self):
         status = " (EXPIRING SOON - discounted)" if self.is_expiring_soon() else ""
-        print(f" {self.name:<20} qty: {self._get_quantity():<6} "
-              f"price: ${self._get_price():,.2f}  "
-              f"expires in: {self.days_until_expiry} day(s){status}  "
-              f"total value: ${self.total_value():,.2f}")
+        print(f" {self.name:<20} Qty: {self._get_quantity():<6} "
+              f"Price: ₱{self._get_price():,.2f}  "
+              f"Expires in: {self.expiry_date} day(s){status}  "
+              f"Total Value: ₱{self.total_value():,.2f}")
