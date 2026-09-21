@@ -28,7 +28,6 @@ class Item:
         self.__price = value if value >= 0 else 0.0
 
     # Public
-
     def restock(self, qty):
         try:
             qty = int(qty)
@@ -41,4 +40,36 @@ class Item:
             return False
 
         self.__quantity += qty
-            print(f"Restock Successful! New quantity of {self.name}: {self.__quantity}")
+        print(f"Restock Successful! New quantity of {self.name}: {self.__quantity}")
+        return True
+
+    def sell(self, qty):
+        try:
+            qty = int(qty)
+        except (TypeError, ValueError):
+            print("Invalid quantity. Quantity must be a non-negative integer.")
+            return False
+
+        if qty <= 0:
+            print("Sale Failed! Quantity must be a positive integer.")
+            return False
+
+        if qty > self.__quantity:
+            print(f"Sale Failed! Not enough {self.name} in stock.")
+            return False
+
+        self.__quantity -= qty
+        print(f"Sale Successful! New quantity of {self.name}: {self.__quantity}")
+        return True
+
+    def total_value(self):
+        return self.__quantity * self.__price
+
+    def display(self):
+        print(f" {self.name:<20} qty: {self.__quantity:<6} "
+              f"price: ${self.__price:,.2f}  "
+              f"total value: ${self.total_value():,.2f}")
+
+    def __str__(self):
+        return (f"{self.__class__.__name__}({self.name}, "
+                f"qty={self.__quantity}, price=${self.__price:,.2f})")

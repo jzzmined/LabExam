@@ -1,4 +1,4 @@
-from item import Item
+from items import Item
 from perishable_item import Perishable_item
 from electronic_item import Electronic_item
 from inventory import Inventory
